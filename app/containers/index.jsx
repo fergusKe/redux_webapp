@@ -5,13 +5,27 @@ class App extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = {
+      initDone: false
+    }
   }
   render() {
     return (
       <div>
-        {this.props.children}
+        {
+          this.state.initDone
+          ? this.props.children
+          : <div>加載中...</div>
+        }
       </div>
     )
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        initDone: true
+      })
+    }, 1000)
   }
 }
 
