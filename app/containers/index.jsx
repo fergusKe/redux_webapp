@@ -1,5 +1,7 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
+import LocalStore from '../util/localStore.js'
+import { CITYNAME } from '../config/localStoreKey.js'
 
 class App extends React.Component {
   constructor(props, context) {
@@ -21,11 +23,16 @@ class App extends React.Component {
     )
   }
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        initDone: true
-      })
-    }, 1000)
+    // 获取位置信息
+    let cityName = LocalStore.getItem(CITYNAME)
+    if (cityName == null) {
+      cityName = '北京'
+    }
+
+    // 更改状态
+    this.setState({
+      initDone: true
+    })
   }
 }
 
