@@ -10,8 +10,10 @@ class List extends React.Component {
     super(props, context);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
-      data: [],
-      hasMore: false
+      data: [], // 存储数据
+      hasMore: false, // 记录当前状态下，是否还有更多数据，这个需要后端返回。true 即还有，false 即没了 
+      isLoadingMore: false, // 记录当前状态下，是否正在加载中。true 即正在加载中，false 即不是加载中状态 
+      page: 1 // 记录下一页的页码，首页的页码是 0
     }
   }
   render() {
@@ -22,6 +24,11 @@ class List extends React.Component {
           this.state.data.length
           ? <ListComponent data={this.state.data} />
           : <div>加載中...</div>
+        }
+        { 
+          this.state.hasMore 
+          ? <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreData.bind(this)}/>
+          : ''
         }
       </div>
     )
@@ -35,6 +42,10 @@ class List extends React.Component {
     const cityName = this.props.cityName
     const result = getListData(cityName, 0)
     this.resultHandle(result)
+  }
+  // 加载更多数据
+  loadMoreData() {
+
   }
   // 处理数据
   resultHandle(result) {
