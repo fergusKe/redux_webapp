@@ -2,6 +2,9 @@ import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import LocalStore from '../util/localStore.js'
 import { CITYNAME } from '../config/localStoreKey.js'
+import { bindActionCreators } from 'redux'
+import { connect} from 'react-redux'
+import * as userInfoActionsFromOtherFile from '../actions/userinfo' 
 
 class App extends React.Component {
   constructor(props, context) {
@@ -30,10 +33,29 @@ class App extends React.Component {
     }
 
     // 更改状态
+    this.props.userInfoActions.update({
+      cityName
+    })
+    
     this.setState({
       initDone: true
     })
   }
 }
 
-export default App
+function mapStateToProps(state) {
+  return {
+
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    userInfoActions: bindActionCreators(userInfoActionsFromOtherFile, dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
