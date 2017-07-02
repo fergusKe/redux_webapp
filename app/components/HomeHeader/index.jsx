@@ -30,4 +30,4 @@ class HomeHeader extends React.Component {
   }
 }
 
-module.exports = HomeHeader
+export default HomeHeader
