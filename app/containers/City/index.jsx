@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 import * as userInfoActionsFromOtherFile from '../../actions/userinfo.js'
 import Header from '../../components/Header'
+import CurrentCity from '../../components/CurrentCity'
 
 class City extends React.Component {
   constructor(props, context) {
@@ -15,6 +16,7 @@ class City extends React.Component {
     return (
       <div>
 				<Header title="選擇城市" />
+				<CurrentCity cityName={this.props.userinfo.cityName} />
 			</div>
     )
   }
