@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute } from 'react-router'
 import App from '../containers'
 import Home from '../containers/Home'
 import City from '../containers/City'
+import Search from '../containers/Search'
 import NotFound from '../containers/404'
 
 // 如果是大型项目，router部分就需要做更加复杂的配置
@@ -16,6 +17,7 @@ class RouterMap extends React.Component {
         <Route path='/' component={App}>
           <IndexRoute component={Home}/>
           <Route path="/city" component={City}></Route>
+          <Route path='/search/:category(/:keyword)' component={Search}></Route>
           <Route path='*' component={NotFound}/>
         </Route>
       </Router>
