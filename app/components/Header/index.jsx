@@ -10,8 +10,16 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <h1>Header</h1>
+      <div id="common-header">
+        <span className="back-icon"  onClick={this.clickHandle.bind(this)}>
+          <i className="icon-chevron-left"></i>
+        </span>
+        <h1>{this.props.title}</h1>
+      </div>
     )
+  }
+  clickHandle() {
+    window.history.back()
   }
 }
 

@@ -13,7 +13,9 @@ class City extends React.Component {
   }
   render() {
     return (
-      <Header />
+      <div>
+				<Header title="選擇城市" />
+			</div>
     )
   }
 	componentDidMount() {
