@@ -42,6 +42,8 @@ class City extends React.Component {
 		// 修改 localStorage
 		localStore.setItem(CITYNAME, newCity)
 
+		// 跳转页面
+		hashHistory.push('/')
 	}
 }
 
@@ -53,7 +55,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		userInfoActions: bindActionCreators(userInfoActionsFromOtherFile)
+		userInfoActions: bindActionCreators(userInfoActionsFromOtherFile, dispatch)
 	}
 }
 
